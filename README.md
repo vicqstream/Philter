@@ -1,4 +1,5 @@
-# Phil Ter
+![](/assets/logo.png)
+
 ## It helps your life and without weighing too much on global warming
 ### Sometimes it help you to filter some arrays
 
@@ -6,32 +7,32 @@
 [![Travis CI   ](http://img.shields.io/travis/marcomd/Philter/master.svg)     ](https://travis-ci.org/marcomd/Philter)
 [![Quality     ](http://img.shields.io/codeclimate/github/marcomd/Philter.svg)](https://codeclimate.com/github/marcomd/Philter)
 
-Filter any kind of array with ease
-It's short and dynamic which helps to increase the readability.
+Filter any kind of array with the power of ruby, with ease and :smile:
 
-Its trace is a usefull tool for teachers.
+It's short, dynamic and readable. Its trace is a usefull tool for teachers.
 
 The performance is inversely proportional to the comfort although efficiency is improved in the latest versions. See the section below.
-
-
-![](/assets/logo.png)
 
 ```ruby
 require 'philter'
 
-# Simple arrays
+# You can use everything to filter
+# ...single value
 [1,2,3].philter 1
 => [1]
 
+# ...array of values
 [1,2,3].philter [2,3]
 => [2,3]
 
+# ...operators
 [1,2,3].philter '<= 2'
 => [1,2]
 
 [1,2,3].philter '!= 2'
 => [1,3]
 
+# ...range
 [1,2,3,4,5].philter 2..4
 => [2, 3, 4]
 
@@ -46,7 +47,7 @@ require 'philter'
 => [2, 4]
 ```
 
-Things get more interesting with array of hashes or objects
+Things get more interesting with array of hashes or objects :yum:
 
 ```ruby
 people = [{ id: 1, name: 'Mark',  email: 'mark@gmail.com'  },
@@ -78,8 +79,11 @@ people.philter name: /M.+/, email: /@gmail/
 # Philter with more attributes -or-
 people.philter({ name: /M.+/, email: /@live/ }, or: true)
 => [{:id=>1, :name=>"Mark", :email=>"mark@gmail.com"}, {:id=>3, :name=>"Bill", :email=>"bill@live.com"}]
+```
 
-# A bit of magic
+To me the power! :godmode:
+
+```ruby
 # Select and update attributes
 regexp = /gmail/
 people.philter(email: regexp) { |e| "#{e[:name]} use #{e[:email].match(regexp)}!"}
